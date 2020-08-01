@@ -1,10 +1,12 @@
 'use strict';
 
+const TASK_CARD_AMOUNT = 3;
+
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
 };
 
-const createControls = () =>{
+const createControls = () => {
   return `<section class="control__btn-wrap">
           <input
             type="radio"
@@ -354,3 +356,31 @@ const createBoardTasksContainer = () => {
 const createLoadMoreButton = () => {
   return `<button class="load-more" type="button">load more</button>`;
 };
+
+
+const mainElement = document.querySelector(`.main`);
+const mainControlsContainerElement = mainElement.querySelector(`.main__control`);
+render(mainControlsContainerElement, createControls(), `beforeend`);
+
+render(mainElement, createFilterList(), `beforeend`);
+render(mainElement, createBoardContainer(), `beforeend`);
+
+const siteBoardElement = mainElement.querySelector(`.board`);
+
+if (siteBoardElement) {
+  render(siteBoardElement, createSortList(), `beforeend`);
+  render(siteBoardElement, createBoardTasksContainer(), `beforeend`);
+
+  const siteBoardTasksElement = siteBoardElement.querySelector(`.board__tasks`);
+
+  if (siteBoardElement) {
+    render(siteBoardTasksElement, createEditCard(), `beforeend`);
+
+    for (let i = 0; i < TASK_CARD_AMOUNT; i++) {
+      render(siteBoardTasksElement, createTaskCard(), `beforeend`);
+    }
+  }
+
+  render(siteBoardElement, createLoadMoreButton(), `beforeend`);
+}
+
