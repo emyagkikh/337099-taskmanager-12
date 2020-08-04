@@ -1,7 +1,7 @@
 # Личный проект «Менеджер задач» [![Build status][travis-image]][travis-url]
 
 * Студент: [Евгений Мягких](https://up.htmlacademy.ru/ecmascript/12/user/337099).
-* Наставник: `Неизвестно`.
+* Наставник: [Артём Макаров](https://htmlacademy.ru/profile/deepsick).
 
 ---
 
