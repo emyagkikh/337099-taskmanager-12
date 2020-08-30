@@ -1,7 +1,8 @@
-import {getRandomInt} from "./../utils";
+import {COLORS} from "../const.js";
+import {getRandomInt} from "../utils";
 
 const MAX_DATE_DAYS_GAP = 7;
-const INITIAL_SCHEDULE = {
+const INITIAL_REPEATING = {
   'mo': false,
   'tu': false,
   'we': false,
@@ -37,28 +38,21 @@ const generateDueDate = () => {
   return new Date(currentDate);
 };
 
-const generateSchedule = () => {
+const generateRepeating = () => {
   return {
-    'mo': Boolean(getRandomInt(0, 1)),
+    'mo': false,
     'tu': false,
     'we': Boolean(getRandomInt(0, 1)),
     'th': false,
     'fr': Boolean(getRandomInt(0, 1)),
     'sa': false,
-    'su': Boolean(getRandomInt(0, 1)),
+    'su': false,
   };
 };
 
 const generateColor = () => {
-  const colorsArray = [
-    `black`,
-    `yellow`,
-    `blue`,
-    `green`,
-    `pink`
-  ];
 
-  return colorsArray[getRandomInt(0, colorsArray.length - 1)];
+  return COLORS[getRandomInt(0, COLORS.length - 1)];
 };
 
 export const generateTask = () => {
@@ -66,9 +60,9 @@ export const generateTask = () => {
   return {
     description: generateDescription(),
     dueDate,
-    schedule: dueDate === null ? generateSchedule() : INITIAL_SCHEDULE,
+    repeating: dueDate === null ? generateRepeating() : INITIAL_REPEATING,
     color: generateColor(),
-    isFavourite: Boolean(getRandomInt(0, 1)),
+    isFavorite: Boolean(getRandomInt(0, 1)),
     isArchive: Boolean(getRandomInt(0, 1)),
   };
 };
